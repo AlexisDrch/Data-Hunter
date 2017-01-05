@@ -1,5 +1,7 @@
 # data-hunter
-`data-hunter` is a module that acts as a black-box extracting sense to an array of JavaScript objects as a dataset.\nOn top of k-means clustered dataset, data-hunter can build a layer of meta-filters to estimate probabilities of a certain meta-data to be in each clusters.
+`data-hunter` is a module that acts as a black-box extracting sense to a dataset (an array of JavaScript objects).
+
+On top of k-means clustered dataset, data-hunter can build a layer of meta-filters to estimate probabilities of a certain meta-data to be in each clusters.
 
 
 ## Usage
