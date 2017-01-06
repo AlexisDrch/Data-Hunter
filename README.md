@@ -6,7 +6,7 @@ On top of k-means clustered dataset, data-hunter can build a layer of meta-filte
 
 ## Usage
 
-To install DataHunter, simply run @not yet available:
+To install DataHunter, simply run:
 
 ```JavaScript
   npm install data-hunter

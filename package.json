@@ -1,11 +1,14 @@
 {
   "name": "data-hunter",
   "version": "1.0.0",
-  "description": "data-hunter acts as a black-box extracting sense to a dataset.
-  On top of k-means clustered datast, data-hunter can build a layer of meta-filters to estimate probabilities of a certain meta-data to be in the clusters.",
+  "description": "data-hunter acts as a black-box extracting sense to a dataset. On top of k-means clustered datast, data-hunter can build a layer of meta-filters to estimate probabilities of a certain meta-data to be in the clusters.",
   "main": "./src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlexisDrch/DataHunter.git"
   },
   "keywords": [
     "k-means",
@@ -17,6 +20,7 @@
   ],
   "author": "Alexis Durocher",
   "license": "ISC",
+  "homepage": "https://github.com/AlexisDrch/DataHunter#readme",
   "dependencies": {
     "object-learning": "1.0.5",
     "underscore": "1.8.3"
