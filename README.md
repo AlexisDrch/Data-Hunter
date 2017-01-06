@@ -1,8 +1,10 @@
 # data-hunter
+
+Hunters, brace yourselves.
+
 `data-hunter` is a module that acts as a black-box extracting sense to a dataset (an array of JavaScript objects).
 
-On top of k-means clustered dataset, data-hunter can build a layer of meta-filters to estimate probabilities of a certain meta-data to be in each clusters.
-
+On top of k-means clustered dataset, data-hunter can build a layer of meta-filters to estimate probabilities of a certain meta-data to be in each clusters. Meaning, you can hunt with a higher probability to hit.
 
 ## Usage
 
@@ -10,11 +12,13 @@ To install DataHunter, simply run @not yet available:
 
 ```JavaScript
   npm install data-hunter
+
+  DataHunter = require('data-hunter');
 ```
 
-### k-means clustering
+### K-means clustering
+
 This module use the k-means algorithm provided in the object-learning module (https://github.com/johngoddard/ObjectLearning).
-You can run normalized k-means clustering on a set of objects by running `ObjectLearning#runKClustering`:
 
 ```JavaScript
   const customers = [
@@ -27,15 +31,16 @@ You can run normalized k-means clustering on a set of objects by running `Object
   	CustomerRequest { time: 11.56, latitude: -115.13997, longitude: 36.17192 },
   ];
 
-  const dataHunter = new Datahunter(customers)
-  // asking for 9 clusters related to the latitude and longitude
-  dataHunter.setClustersParameters(9, ['latitude', 'longitude']);
+  const dataHunter = new DataHunter(customers)
+  // asking for 3 clusters related to the latitude and longitude
+  dataHunter.setClustersParameters(3, ['latitude', 'longitude']);
   const clusteringModel = dataHunter.getClusteringModel();
   
 ```
-### probabilities estimation
+### Probabilities estimation
 
-Having those row clusters is interesting but, making sense of it can return a real business value. DataHunter can build a layer of meta-filter (must be an attribute of the data) to estimate the probabilities to find a data in each clusters given a meta-filter value.
+Having those row clusters is interesting, right. But hunting data in it can reveal a real business value.
+DataHunter can build a layer of meta-filter (must be an attribute of the data) to estimate the probabilities to find a data in each clusters.
 
 ```JavaScript
 
@@ -51,14 +56,23 @@ Having those row clusters is interesting but, making sense of it can return a re
 
   const choosenHout = 11;
   const dataHunter = new Datahunter(customers)
-  // asking for 9 clusters related to the latitude and longitude
-  dataHunter.setClustersParameters(9, ['latitude', 'longitude']);
+  // asking for 3 clusters related to the latitude and longitude
+  dataHunter.setClustersParameters(3, ['latitude', 'longitude']);
   // seting the meta-filter 'time' to categorize the clusters according to the time of the request
   dataHunter.setMetaClustersParameters(24, 'time');
   const metaClusters = dataHunter.getMetaClusters();
 
 ```
-### complete run example
+### Complete run example
+
+First you need to define how you want to cluster your data and which information do you want to hunt (filter) on top of it.
+Here, we use latitude and longitude as parameters for clustering our dataset.
+Each cluster can be considered as an area wrapping a part of the dataset.
+Each area are centered around an average value.
+
+We use the time (24 hours) of the request as a meta-filter to estimate the probability to find a customer in each of the area.
+DataHunter returns the best probability and the best clusters for a given hour.
+All you need for hunting is now up to go.
 
 ```JavaScript
 
@@ -74,8 +88,8 @@ Having those row clusters is interesting but, making sense of it can return a re
 
   const choosenHour = 11;
   const dataHunter = new Datahunter(customers)
-  // asking for 9 clusters related to the latitude and longitude
-  dataHunter.setClustersParameters(9, ['latitude', 'longitude']);
+  // asking for 3 clusters related to the latitude and longitude
+  dataHunter.setClustersParameters(3, ['latitude', 'longitude']);
   // seting the meta-filter 'time' to categorize the clusters according to the time of the request
   dataHunter.setMetaClustersParameters(24, 'time');
 
