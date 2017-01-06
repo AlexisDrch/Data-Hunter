@@ -1,6 +1,6 @@
 {
   "name": "data-hunter",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "data-hunter acts as a black-box extracting sense to a dataset. On top of k-means clustered datast, data-hunter can build a layer of meta-filters to estimate probabilities of a certain meta-data to be in the clusters.",
   "main": "./src/index.js",
   "scripts": {
