@@ -70,7 +70,6 @@ Each area is centered around an average value.
 
 We use the time (24 hours) of the request as a meta-filter to estimate the probability to find a customer in each of the area.
 DataHunter returns the best probability and the best clusters for a given hour.
-All you need for hunting is now up to go.
 
 ```JavaScript
 
@@ -101,3 +100,5 @@ All you need for hunting is now up to go.
   });
 
 ```
+
+All you need for hunting is now up to go
