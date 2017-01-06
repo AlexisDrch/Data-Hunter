@@ -1,6 +1,4 @@
-# data-hunter
-
-Hunters, brace yourselves.
+# Hunters, brace yourselves.
 
 `data-hunter` is a module that acts as a black-box extracting sense to a dataset (an array of JavaScript objects).
 
@@ -67,8 +65,8 @@ DataHunter can build a layer of meta-filter (must be an attribute of the data) t
 
 First you need to define how you want to cluster your data and which information do you want to hunt (filter) on top of it.
 Here, we use latitude and longitude as parameters for clustering our dataset.
-Each cluster can be considered as an area wrapping a part of the dataset.
-Each area are centered around an average value.
+Each cluster can be considered as an area wrapping a part of the data.
+Each area is centered around an average value.
 
 We use the time (24 hours) of the request as a meta-filter to estimate the probability to find a customer in each of the area.
 DataHunter returns the best probability and the best clusters for a given hour.
