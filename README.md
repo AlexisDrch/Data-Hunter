@@ -84,7 +84,7 @@ DataHunter returns the best probability and the best clusters for a given hour.
   	CustomerRequest { time: 11.56, latitude: -115.13997, longitude: 36.17192 },
   ];
 
-  const choosenHour = 11;
+  const chosenHour = 11;
   const dataHunter = new Datahunter(customers)
   // asking for 3 clusters related to the latitude and longitude
   dataHunter.setClustersParameters(3, ['latitude', 'longitude']);
@@ -93,7 +93,7 @@ DataHunter returns the best probability and the best clusters for a given hour.
 
   // running analytics return the bestCluster, its probability and the corresponding cluster's parameters average 
   // (here it is the latitude and longitude)
-  dataHunter.run(choosenHour, bestCluster, bestClusterProbability, bestClusterAverage) => {
+  dataHunter.run(chosenHour, (bestCluster, bestClusterProbability, bestClusterAverage) => {
     console.log('\nc. Interpretation : ');
     console.log('--------------------\n');
     console.log(`At ${choosenHour}, the highest probability to find a customer request is in the cluster : ${bestCluster}`);
