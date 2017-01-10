@@ -22,7 +22,7 @@ class DataHunter {
     if (!this.validClusteringModel(this.clusteringModel)) throw (new Error('On running shallow analysis.\nShould have proper clusteringModel before running.\nHave a look at the setClusteringModel method'));
     this.generateMetaClusters((data, err2) => {
       if (err2) throw err2;
-      this.runWithoutGeneration(chosenMetaFilter, callback);
+      this.runWithoutAnyGeneration(chosenMetaFilter, callback);
     });
   }
 
@@ -127,7 +127,7 @@ class DataHunter {
       !this.validMetaClustersParameters(this.metaClustersNumber, this.metaFilterType)) {
       const error = new Error(
         'On generating meta cluster.\nMeta clusters must be built on top of an existing clustering model.\nHave a look to the generateClusteringMode method.');
-      callback(error, null);
+      callback(null, error);
       return;
     }
     // building MetaClusters on top of the clustering models
