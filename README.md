@@ -101,5 +101,13 @@ DataHunter returns the best probability and the best clusters for a given hour.
   });
 
 ```
+By calling it once, clusering model and meta-clusters are stored in a ./data folder in a json format. 
+You can then use those data to set it directly in the dataHunter module so as you avoid repeating the costly generation. 
+
+A good practice wood be to have a continuous datahunter that runs periodically to update the clusters and the same can be used on
+those data to return a direct result without regenerating everytime the clusters.
+
+Check the run, runWithoutSubClustersGeneration and runWithoutAnyGeneration method inside the module.
+
 
 All you need for hunting is now up to go.
