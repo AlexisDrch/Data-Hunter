@@ -12,7 +12,7 @@ class DataHunter {
   }
 
   run(chosenMetaFilter, callback) {
-    this.generateClusteringModel((err1) => {
+    this.generateClusteringModel((data, err1) => {
       if (err1) throw err1;
       this.runWithoutSubClustersGeneration(chosenMetaFilter, callback);
     });
@@ -20,7 +20,7 @@ class DataHunter {
 
   runWithoutSubClustersGeneration(chosenMetaFilter, callback) {
     if (!this.validClusteringModel(this.clusteringModel)) throw (new Error('On running shallow analysis.\nShould have proper clusteringModel before running.\nHave a look at the setClusteringModel method'));
-    this.generateMetaClusters((err2) => {
+    this.generateMetaClusters((data, err2) => {
       if (err2) throw err2;
       this.runWithoutGeneration(chosenMetaFilter, callback);
     });
