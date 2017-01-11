@@ -68,7 +68,7 @@ class DataHunter {
       metaClustersNumber !== undefined
       && metaClustersNumber > 0
       && _.isString(metaFilterType)
-      && this.isDefinedInAllData(metaFilterType)
+      && this.isDefinedInAllData(metaFilterType, this.dataSet)
     );
   }
 
@@ -84,6 +84,14 @@ class DataHunter {
     return (
       clusteringModel !== undefined
       && clusteringModel.groups.length === this.clustersNumber
+    );
+  }
+
+  validDataSet(dataSet) {
+    return (
+      Array.isArray(dataSet)
+      && (dataSet.length > 0)
+      && this.isDefinedInAllData(this.metaFilterType, dataSet)
     );
   }
 
@@ -160,6 +168,11 @@ class DataHunter {
     return this.metaClusters;
   }
 
+  setNewDataSet(dataSet) {
+    if (!this.validDataSet(dataSet)) throw (new Error('data set must be valid'));
+    this.dataSet = dataSet;
+  }
+
   setMetaClusters(metaClusters) {
     if (!this.validMetaClusters(metaClusters)) throw (new Error('invalid metaClusters'));
     this.metaClusters = metaClusters;
@@ -171,9 +184,9 @@ class DataHunter {
   }
 
 
-  isDefinedInAllData(attribute) {
+  isDefinedInAllData(attribute, dataSet) {
     let isInAll = true;
-    this.dataSet.forEach((datum) => {
+    dataSet.forEach((datum) => {
       isInAll = isInAll && (datum[attribute] !== undefined);
     });
     return isInAll;
