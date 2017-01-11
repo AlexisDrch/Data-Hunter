@@ -153,16 +153,10 @@ class DataHunter {
   }
 
   getClusteringModel() {
-    this.generateClusteringModel((err) => {
-      if (err) throw err;
-    });
     return this.clusteringModel;
   }
 
   getMetaClusters() {
-    this.generateMetaClusters((err) => {
-      if (err) throw err;
-    });
     return this.metaClusters;
   }
 
