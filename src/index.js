@@ -29,26 +29,32 @@ class DataHunter {
   runWithoutAnyGeneration(chosenMetaFilter, callback) {
     if (!this.validMetaClusters(this.metaClusters)) throw (new Error('On running shallow analysis.\nShould have proper metaClusters before running.\nHave a look at the setMetaClusters method'));
     const dataForChosenMetaFilter = this.metaClusters[chosenMetaFilter];
-    console.log(`\n#. Prediction for ${chosenMetaFilter} ${this.metaFilterType} :`);
     let max = 0;
     let bestCluster = 0;
     let bestClusterProbability = 0;
-    console.log(`\na. Data for this ${this.metaFilterType} :`);
-    console.log('--------------------\n');
-    console.log(dataForChosenMetaFilter);
-    console.log(`\nb. Probability for this ${this.metaFilterType} :`);
-    console.log('--------------------------------------\n');
+    const result = {};
+    result.clustersList = [];
     for (let i = 0; i < Object.keys(dataForChosenMetaFilter.data).length; i += 1) {
       const probability = dataForChosenMetaFilter.data[i] / dataForChosenMetaFilter.total;
-      console.log(`cluster ${i} :   ${probability}`);
+      // building clusters list
+      const clusterI = {};
+      clusterI.index = i;
+      clusterI.probability = probability;
+      clusterI.average = this.clusteringModel.groups[i].groupAvgs;
+      result.clustersList.push(clusterI);
+      // check for best clusters
       if (dataForChosenMetaFilter.data[i] > max) {
         max = dataForChosenMetaFilter.data[i];
         bestCluster = i;
         bestClusterProbability = probability;
       }
     }
-    const bestClusterAverage = this.clusteringModel.groups[bestCluster - 1].groupAvgs;
-    callback(bestCluster, bestClusterProbability, bestClusterAverage);
+    const bestClusterAverage = this.clusteringModel.groups[bestCluster].groupAvgs;
+
+    result.bestCluster = bestCluster;
+    result.bestClusterProbability = bestClusterProbability;
+    result.bestClusterAverage = bestClusterAverage;
+    callback(result);
   }
 
   validClustersParameters(clustersNumber, clustersFilters) {
