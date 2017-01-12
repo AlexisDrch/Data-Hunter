@@ -104,11 +104,10 @@ DataHunter returns the best probability and the best clusters for a given hour.
 ### Good practice
 
 The clustering method is extremely expensive on large dataset. 
-Nervertheless, this module will generate the clusters and store them in ./data folder in a json format.
-Those generated data, can be used directly by the dataHunter to run without generating the clusters an other time.
+Nervertheless, this module will generate the clusters and store them as internal variable so it is posible to run analysis without generating the clusters an other time if the dataset hasn't been updated.
 
 On a backend side, a good practice would be to call continuously an update of the cluster on new data set with the dataHunter,
-but running it without generation when it comes to get a direct result.
+but running it without clusters generation when it comes to get a direct result.
 
 Check the run, runWithoutSubClustersGeneration and runWithoutAnyGeneration method inside the module.
 

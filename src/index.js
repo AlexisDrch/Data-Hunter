@@ -126,7 +126,6 @@ class DataHunter {
       this.clustersFilters,
       { maxIter: this.maxIter, groups: this.clustersNumber, groupNames: this.groupNames }
     );
-    fs.writeFileSync('./data/clustering-model.json', `${JSON.stringify(this.clusteringModel, null, 2)}\n`);
     callback(this.clusteringModel, null);
   }
 
@@ -156,7 +155,6 @@ class DataHunter {
       dataForMetaI.data = data;
       this.metaClusters[i] = dataForMetaI;
     }
-    fs.writeFileSync('./data/meta-clusters.json', `${JSON.stringify(this.metaClusters, null, 2)}\n`);
     callback(this.metaClusters, null);
   }
 
