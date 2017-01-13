@@ -54,6 +54,9 @@ class DataHunter {
     result.bestCluster = bestCluster;
     result.bestClusterProbability = bestClusterProbability;
     result.bestClusterAverage = bestClusterAverage;
+    result.clustersList.sort(function(a, b) {
+      return  b.probability - a.probability;
+    });
     callback(result);
   }
 
